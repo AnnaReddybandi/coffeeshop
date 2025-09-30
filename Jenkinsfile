@@ -4,7 +4,7 @@ pipeline {
     environment {
         DOCKER_IMAGE = "coffeeshop-site"
         CONTAINER_NAME = "coffeeshop"
-        PORT = "8090"
+        PORT = "8080"
     }
 
     stages {
