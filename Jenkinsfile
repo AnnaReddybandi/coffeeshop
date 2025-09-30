@@ -1,39 +1,13 @@
-pipeline {
-    agent any
-
-    stages {
-        stage('Checkout') {
-            steps {
-                git branch: 'shop', url: 'https://github.com/AnnaReddybandi/coffeeshop.git'
-            }
-        }
-
-        stage('Build') {
-            steps {
-                echo 'Build step: nothing to compile for HTML/CSS project'
-            }
-        }
-
-        stage('Archive') {
-            steps {
-                archiveArtifacts artifacts: '**/*', fingerprint: true
-            }
-        }
-
-        stage('Deploy') {
-            steps {
-                echo 'Deploy step: add deployment commands here later'
-            }
-        }
+stage('Docker Build') {
+    steps {
+        sh 'docker build -t coffeeshop-app .'
     }
+}
 
-    post {
-        success {
-            echo 'Pipeline completed successfully!'
-        }
-        failure {
-            echo 'Pipeline failed!'
-        }
+stage('Docker Run') {
+    steps {
+        sh 'docker rm -f coffeeshop-container || true'
+        sh 'docker run -d -p 80:80 --name coffeeshop-container coffeeshop-app'
     }
 }
 
