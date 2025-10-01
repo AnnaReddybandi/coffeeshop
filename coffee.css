@@ -105,6 +105,16 @@
     border-color: green;
     transform: translateX(20px);
 }
+/* coffee.css additions */
+
+.nav_body a.active {
+    color: gold;
+    border-bottom: 2px solid gold;
+}
+
+html {
+    scroll-behavior: smooth;
+}
 
 /* About Section */
 #About {
